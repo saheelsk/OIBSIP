@@ -1,0 +1,141 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:  Helvetica,;
+}
+html,
+body{
+  height: 100%;
+  width: 100%;
+}
+#main{
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#nav{
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  padding: 0 40px;
+  align-items: center;
+  justify-content: space-between;
+}
+#nav h1{
+  font-size: 32px;
+  font-weight: 100;
+}
+#nav #part2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#nav #part2 a{
+  text-decoration: none;
+  color: #ffffff;
+  margin: 25px;
+}
+#nav #part2 a:nth-last-child(1){
+  padding: 7px 18px;
+  border-radius: 50px;
+  border: 1px solid black;
+  position: relative;
+  overflow: hidden;
+}
+#nav #part2 a:nth-last-child(1) #green{
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: -100%;
+  transition: left 0.4s ease;
+}
+#nav #part2 a:nth-last-child(1):hover #green{
+  left: 0;
+}
+#nav #part2 a:nth-last-child(1) h5{
+  font-weight: 100;
+  position: relative;
+  z-index: 99;
+}
+
+#about-us {
+  padding: 360px 5%;
+  background-color: #191f36;
+  margin-top: 150px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#about-us h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+#about-us p {
+  font-size: 18px;
+}
+
+.container h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 0px 0px 0px 300px;
+}
+
+.about-text {
+  flex-basis: 70%;
+  padding-right: 30px;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.about-image {
+  flex-basis: 65%;
+  height: 50px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .about-us-content {
+      flex-direction: column;
+  }
+
+  .about-us-text, .about-us-image {
+      flex-basis: 100%;
+      padding-right: 0;
+      margin-bottom: 30px;
+  }
+}

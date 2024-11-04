@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart Page</title>
+<link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <div id="main">
+    <div id="nav">
+      <img src="logo.jpeg" alt="logo" width="60px" height="60px">
+      <div id="part2">
+        <a href="index.html">Home</a>
+        <a href="product.html">Product</a>
+        <a href="about.html">About</a>
+        <a href="#"><h5>Contact Us</h5><div id="green"></div></a>
+      </div>
+      <!-- <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count"></span>
+      </div> -->
+    </div>
+    <div id="cart-items"></div>
+    <div id="cart-item"></div>
+  </div>
+
+  <style>
+    #cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .cart-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-right: 20px;
+    }
+    .cart-item-details {
+      flex-grow: 1;
+    }
+    .remove-btn {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    #cart-total {
+      text-align: right;
+      font-weight: bold;
+      margin-top: 20px;
+      padding-right: 20px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalElement = document.createElement('div');
+      cartTotalElement.id = 'cart-total';
+      cartItemsContainer.after(cartTotalElement);
+
+      function loadCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          const cartItem = document.createElement('div');
+          cartItem.className = 'cart-item';
+          cartItem.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+              <h3>${item.name}</h3>
+              <p>Price: Rs. ${item.price}</p>
+            </div>
+            <button class="remove-btn" data-index="${index}">Remove</button>
+          `;
+          cartItemsContainer.appendChild(cartItem);
+          total += parseFloat(item.price);
+        });
+
+        cartTotalElement.textContent = `Total: Rs. ${total.toFixed(2)}`;
+
+        document.querySelectorAll('.remove-btn').forEach(button => {
+          button.addEventListener('click', function() {
+            const index = this.getAttribute('data-index');
+            removeFromCart(index);
+          });
+        });
+      }
+
+      function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+      }
+
+      loadCart();
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"></script>
+  <script src="script.js"></script>
+
+  
+</body>
+</html>
